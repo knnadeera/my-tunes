@@ -4,14 +4,18 @@ import { NavLink } from "react-router-dom";
 
 function NavigationBar() {
   const h5Css = { color: "#aeaefe" };
-  const navStyle = { textDecoration: "none", marginBottom: "2rem" };
+  const navStyle = {
+    textDecoration: "none",
+    marginBottom: "1rem",
+    marginTop: "1rem",
+  };
 
   return (
     <Navbar bg="purple" variant="light" expand="lg" collapseOnSelect>
       <Container>
         <Col>
           <Row>
-            <NavLink to="/" style={navStyle}>
+            <NavLink to="/my-tunes" style={navStyle}>
               <h5 style={h5Css}>
                 <i className="fa-solid fa-bars-staggered"></i>
                 Home

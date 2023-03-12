@@ -16,7 +16,7 @@ function App() {
           <Header/>
           <Container>
             <Routes>
-              <Route path="/" Component={HomeScreen} />
+              <Route path="/my-tunes" Component={HomeScreen} />
             </Routes>
           </Container>
         </Col>

@@ -27,6 +27,7 @@ const HomeScreen: React.FC = () => {
   }, []);
 
   const fetchMusic = (): void => {
+    console.log('a')
     fetch(
       "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
       {
@@ -42,7 +43,8 @@ const HomeScreen: React.FC = () => {
         return response.json();
       })
       .then((data) => setMusic(data.tracks))
-      .catch((err) => console.error(err));console.log(data)
+      .catch((err) => console.error(err));
+      console.log('a',data)
   };
   
 
@@ -64,7 +66,7 @@ const HomeScreen: React.FC = () => {
   return (
     <div
       style={{
-        marginLeft: "-10rem",
+        marginLeft: "-9rem",
         marginTop: "1rem",
         width: "100rem",
       }}
@@ -88,7 +90,6 @@ const HomeScreen: React.FC = () => {
         ssr={true} // server-side rendering fallback
         infinite={true}
         autoPlay={false}
-        autoPlaySpeed={3000}
         keyBoardControl={true}
         customTransition="all .5s"
         transitionDuration={500}
