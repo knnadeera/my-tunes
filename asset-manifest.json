@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/my-tunes/static/css/main.7cf2b256.css",
-    "main.js": "/my-tunes/static/js/main.f345050e.js",
+    "main.css": "/my-tunes/static/css/main.b2065912.css",
+    "main.js": "/my-tunes/static/js/main.2a9775e5.js",
     "static/js/787.6420c24d.chunk.js": "/my-tunes/static/js/787.6420c24d.chunk.js",
     "static/media/Untitled.png": "/my-tunes/static/media/Untitled.33b311c9b8d3d80e4af7.png",
     "static/media/revicons.eot": "/my-tunes/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/my-tunes/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/my-tunes/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/my-tunes/index.html",
-    "main.7cf2b256.css.map": "/my-tunes/static/css/main.7cf2b256.css.map",
-    "main.f345050e.js.map": "/my-tunes/static/js/main.f345050e.js.map",
+    "main.b2065912.css.map": "/my-tunes/static/css/main.b2065912.css.map",
+    "main.2a9775e5.js.map": "/my-tunes/static/js/main.2a9775e5.js.map",
     "787.6420c24d.chunk.js.map": "/my-tunes/static/js/787.6420c24d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7cf2b256.css",
-    "static/js/main.f345050e.js"
+    "static/css/main.b2065912.css",
+    "static/js/main.2a9775e5.js"
   ]
 }
