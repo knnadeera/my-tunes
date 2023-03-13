@@ -14,11 +14,9 @@ function App() {
         </Col>
         <Col md={10}>
           <Header/>
-          <Container>
             <Routes>
               <Route path="/my-tunes" Component={HomeScreen} />
             </Routes>
-          </Container>
         </Col>
       </Row>
     </>

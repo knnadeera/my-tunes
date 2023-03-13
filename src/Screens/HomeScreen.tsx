@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
 import data from "../Assets/data";
+import './HomeScreen.css'
 
 export interface MusicTrack {
   artists: [];
@@ -19,57 +20,59 @@ export interface MusicTrack {
   url: string;
 }
 
+const responsive = {
+  xldesktop: {
+    breakpoint: { max: 1920, min: 1441 },
+    items: 9,
+  },
+  desktop: {
+    breakpoint: { max: 1440, min: 1024},
+    items: 6,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 5,
+  },
+  tablet2: {
+    breakpoint: { max: 768, min: 464 },
+    items: 4,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+  },
+};
+
+
 const HomeScreen: React.FC = () => {
-  const [music, setMusic] = useState<MusicTrack[]>([]);
-
-  useEffect(() => {
-    fetchMusic();
-  }, []);
-
-  const fetchMusic = (): void => {
-    console.log('a')
-    fetch(
-      "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
-      {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key":
-            "c5f01b49b1msh260f71874aca913p150a01jsncb5ddeb5b53d",
-          "X-RapidAPI-Host": "shazam.p.rapidapi.com",
-        },
-      }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => setMusic(data.tracks))
-      .catch((err) => console.error(err));
-      console.log('a',data)
-  };
+  // const [music, setMusic] = useState<MusicTrack[]>([]);]
   
+  // useEffect(() => {
+  //   fetchMusic();
+  // }, []);
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 9,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  // const fetchMusic = (): void => {
+  //   fetch(
+  //     "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "X-RapidAPI-Key":
+  //           "c5f01b49b1msh260f71874aca913p150a01jsncb5ddeb5b53d",
+  //         "X-RapidAPI-Host": "shazam.p.rapidapi.com",
+  //       },
+  //     }
+  //   )
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => setMusic(data.tracks))
+  //     .catch((err) => console.error(err));
+  // };
 
   return (
     <div
-      style={{
-        marginLeft: "-9rem",
-        marginTop: "1rem",
-        width: "100rem",
-      }}
+      className="home"
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <h6 style={{ width: "16%", color: "gray" }}>Released this week</h6>
@@ -96,9 +99,9 @@ const HomeScreen: React.FC = () => {
         containerClass="carousel-container"
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
+        itemClass="carousel-item-padding-0-px"
       >
-        {music.map((track) => (
+        {data.map((track) => (
           <Card
             style={{
               width: "152px",
