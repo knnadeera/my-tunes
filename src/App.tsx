@@ -1,8 +1,9 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import NavigationBar from "./Components/NavigationBar";
+import FavouritesScreen from "./Screens/FavouritesScreen";
 import HomeScreen from "./Screens/HomeScreen";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Header/>
             <Routes>
               <Route path="/my-tunes" Component={HomeScreen} />
+              <Route path="/favourites" Component={FavouritesScreen} />
             </Routes>
         </Col>
       </Row>

@@ -11,7 +11,7 @@ function Header() {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <img src={HeaderImage} style={{ scale: "1.15" }} />
+        <img alt="headerImage" src={HeaderImage} style={{ scale: "1.15" }} />
         <strong
           style={{
             margin: "1rem",

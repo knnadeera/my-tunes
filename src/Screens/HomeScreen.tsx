@@ -5,7 +5,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
 import data from "../Assets/data";
-import './HomeScreen.css'
 
 export interface MusicTrack {
   artists: [];
@@ -26,7 +25,7 @@ const responsive = {
     items: 9,
   },
   desktop: {
-    breakpoint: { max: 1440, min: 1024},
+    breakpoint: { max: 1440, min: 1024 },
     items: 6,
   },
   tablet: {
@@ -43,10 +42,9 @@ const responsive = {
   },
 };
 
-
 const HomeScreen: React.FC = () => {
   // const [music, setMusic] = useState<MusicTrack[]>([]);]
-  
+
   // useEffect(() => {
   //   fetchMusic();
   // }, []);
@@ -69,13 +67,53 @@ const HomeScreen: React.FC = () => {
   //     .then((data) => setMusic(data.tracks))
   //     .catch((err) => console.error(err));
   // };
-
+  console.log(data);
   return (
-    <div
-      className="home"
-    >
+    <div style={{
+      marginTop: "1rem",
+      maxWidth: "100%"
+    }}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <h6 style={{ width: "16%", color: "gray" }}>Released this week</h6>
+        <h6 style={{ width: "20%", color: "gray" }}>Released this week</h6>
+        <div
+          style={{
+            height: "1px",
+            width: "100%",
+            backgroundColor: "#93a5b2",
+            marginLeft: "1rem",
+          }}
+        ></div>
+      </div>
+      <Carousel
+        swipeable={true}
+        draggable={true}
+        showDots={false}
+        responsive={responsive}
+        ssr={true} // server-side rendering fallback
+        infinite={true}
+        autoPlay={false}
+        keyBoardControl={true}
+        customTransition="all .5s"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-0-px"
+      >
+        {data.map((track) => (
+          <Card
+            style={{
+              width: "152px",
+              border: "none",
+            }}
+            key={track.key}
+          >
+            <Music track={track} />
+          </Card>
+        ))}
+      </Carousel>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h6 style={{ width: "20%", color: "gray" }}>Featured Playlists</h6>
         <div
           style={{
             height: "1px",
