@@ -1,19 +1,28 @@
-import React from "react";
+import axios from "axios";
+import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { MusicTrack } from "../Screens/HomeScreen";
+import { useDispatch } from "react-redux";
+import { addToFav } from "../actions/favActions";
+import { MusicProps } from "../Screens/HomeScreen";
 import { stateDetails } from "./Music";
 
 interface TrackProps {
   handleModal: stateDetails | any;
-  track: MusicTrack | any;
+  track: MusicProps | any;
 }
 
 const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
-  const favHandler = () => {
-    console.log(track);
+  const [fav, setFav] = useState(false);
+  const dispatch = useDispatch();
+
+  const favHandler = async () => {
+    await dispatch(addToFav(track));
+    setFav(true);
   };
+
   const favRemoveHandler = () => {
-    console.log(track);
+    console.log(track.key);
+    setFav(false);
   };
 
   return (
@@ -24,16 +33,20 @@ const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
       <Modal.Body>
         <img alt={track.title} src={track.images.coverart}></img>
         <h6>{track.share.subject}</h6>
-        <i
-          className="fa-sharp fa-regular fa-star"
-          style={{ cursor: "pointer" }}
-          onClick={favHandler}
-        ></i>
-        <i
-          className="fa-sharp fa-solid fa-star"
-          style={{ cursor: "pointer" }}
-          onClick={favRemoveHandler}
-        ></i>
+        {!fav && (
+          <i
+            className="fa-sharp fa-regular fa-star"
+            style={{ cursor: "pointer" }}
+            onClick={favHandler}
+          ></i>
+        )}
+        {fav && (
+          <i
+            className="fa-sharp fa-solid fa-star"
+            style={{ cursor: "pointer" }}
+            onClick={favRemoveHandler}
+          ></i>
+        )}
         <br />
         <a href={track.url} target="_blank">
           Click here to listen {">>"}

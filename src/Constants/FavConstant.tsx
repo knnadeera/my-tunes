@@ -1,0 +1,2 @@
+export const FAV_ADD_TRACK = "FAV_ADD_TRACK";
+export const FAV_REMOVE_TRACK = "FAV_REMOVE_TRACK";

@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
 import data from "../Assets/data";
 
-export interface MusicTrack {
+export interface MusicProps {
   artists: [];
   hub: {};
   images: {};

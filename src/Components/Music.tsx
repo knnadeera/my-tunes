@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { MusicTrack } from "../Screens/HomeScreen";
+import { Modal } from "react-bootstrap";
+import { MusicProps } from "../Screens/HomeScreen";
 import TrackDetails from "./TrackDetails";
 
-interface MusicProps {
-  track: MusicTrack | any;
+interface PropsFromHome {
+  track: MusicProps | any;
 }
 
 export interface stateDetails {
   handleModal: boolean;
 }
 
-const Music: React.FC<MusicProps> = ({ track }) => {
+const Music: React.FC<PropsFromHome> = ({ track }) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 

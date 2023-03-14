@@ -3,7 +3,18 @@ import { Col, Container, Navbar, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 function NavigationBar() {
-  const h5Css = { color: "#aeaefe" };
+  const h5Css = {
+    container: {
+      color: "#aeaefe",
+      "@media (maxWidth: 1440px)": {
+        fontSize: "0.8rem",
+      },
+      "@media (maxWidth: 1024px)": {
+        fontSize: "0.5rem",
+      },
+    },
+  };
+
   const navStyle = {
     textDecoration: "none",
     marginBottom: "1rem",
@@ -16,7 +27,7 @@ function NavigationBar() {
         <Col>
           <Row>
             <NavLink to="/my-tunes" style={navStyle}>
-              <h5 style={h5Css}>
+              <h5 style={h5Css.container}>
                 <i className="fa-solid fa-bars-staggered"></i>
                 Home
               </h5>
@@ -24,7 +35,7 @@ function NavigationBar() {
           </Row>
           <Row>
             <NavLink to="/search" style={navStyle}>
-              <h5 style={h5Css}>
+              <h5 style={h5Css.container}>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 Search
               </h5>
@@ -32,7 +43,7 @@ function NavigationBar() {
           </Row>
           <Row>
             <NavLink to="/favourites" style={navStyle}>
-              <h5 style={h5Css}>
+              <h5 style={h5Css.container}>
                 <i className="fa-solid fa-heart"></i>
                 Favourites
               </h5>
@@ -40,7 +51,7 @@ function NavigationBar() {
           </Row>
           <Row>
             <NavLink to="/playlist" style={navStyle}>
-              <h5 style={h5Css}>
+              <h5 style={h5Css.container}>
                 <i className="fa-solid fa-circle-play"></i>
                 Playlist
               </h5>
