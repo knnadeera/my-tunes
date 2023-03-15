@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { favReducer } from "./reducers/favReducer";
 
+
 const reducer = combineReducers({
     fav: favReducer,
 });

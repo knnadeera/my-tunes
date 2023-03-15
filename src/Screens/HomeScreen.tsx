@@ -67,7 +67,6 @@ const HomeScreen: React.FC = () => {
   //     .then((data) => setMusic(data.tracks))
   //     .catch((err) => console.error(err));
   // };
-  console.log(data);
   return (
     <div style={{
       marginTop: "1rem",

@@ -6,12 +6,6 @@ function NavigationBar() {
   const h5Css = {
     container: {
       color: "#aeaefe",
-      "@media (maxWidth: 1440px)": {
-        fontSize: "0.8rem",
-      },
-      "@media (maxWidth: 1024px)": {
-        fontSize: "0.5rem",
-      },
     },
   };
 

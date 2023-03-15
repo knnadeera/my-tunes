@@ -19,7 +19,7 @@ export interface LoaderProps {
 }
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   // useEffect(() => {
   //   const client = KeycloakAuth
@@ -29,11 +29,11 @@ function App() {
   //     .then((res) => setIsLogin(res))
   //     .catch((err) => console.error(err));
   // }, [setIsLogin]);
-  console.log(isLogin);
+  // console.log(isLogin);
 
   return (
     <>
-      {isLogin && (
+      {/* {isLogin && ( */}
         <>
           <Row>
             <Col md={2}>
@@ -48,7 +48,7 @@ function App() {
             </Col>
           </Row>
         </>
-      )}
+      {/* )} */}
     </>
   );
 }
