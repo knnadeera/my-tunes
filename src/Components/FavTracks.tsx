@@ -5,17 +5,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
 
-export interface MusicProps {
-  artists: [];
-  hub: {};
-  images: {};
-  key: string;
-  layout: string;
-  share: {};
-  subtitle: string;
-  title: string;
-  type: string;
-  url: string;
+interface FavProp {
+  updatedFav:any;
+  updated:any
 }
 
 const responsive = {
@@ -41,15 +33,15 @@ const responsive = {
   },
 };
 
-const FavTracks = () => {
-  const [isFavTracks, setIsFavTracks] = useState([]);
+const FavTracks:React.FC<FavProp> = ({ updatedFav, updated }) => {
+  // const [isFavTracks, setIsFavTracks] = useState([]);
 
-  useEffect(() => {
-    const favTracks = localStorage.getItem("favTrack")
-      ? JSON.parse(localStorage.getItem("favTrack")!)
-      : [];
-    setIsFavTracks(favTracks);
-  }, []);
+  // useEffect(() => {
+  //   const favTracks = localStorage.getItem("favTrack")
+  //     ? JSON.parse(localStorage.getItem("favTrack")!)
+  //     : [];
+  //   setIsFavTracks(favTracks);
+  // },[localStorage]);
 
   return (
     <div>
@@ -69,7 +61,7 @@ const FavTracks = () => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-0-px"
       >
-        {isFavTracks.map((track: any) => (
+        {updatedFav.map((track: any) => (
           <Card
             style={{
               width: "152px",
@@ -77,7 +69,7 @@ const FavTracks = () => {
             }}
             key={track.key}
           >
-            <Music track={track} />
+            <Music track={track} updated={updated}/>
           </Card>
         ))}
       </Carousel>

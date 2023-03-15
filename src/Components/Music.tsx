@@ -5,13 +5,14 @@ import TrackDetails from "./TrackDetails";
 
 interface PropsFromHome {
   track: MusicProps | any;
+  updated:any
 }
 
 export interface stateDetails {
   handleModal: boolean;
 }
 
-const Music: React.FC<PropsFromHome> = ({ track }) => {
+const Music: React.FC<PropsFromHome> = ({ track, updated }) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -30,11 +31,11 @@ const Music: React.FC<PropsFromHome> = ({ track }) => {
   return (
     <>
       <Modal show={showModal} onHide={handleModal}>
-        <TrackDetails handleModal={handleModal} track={track} />
+        <TrackDetails handleModal={handleModal} track={track} updated={updated}/>
       </Modal>
       <Card
         style={{
-          border:'none',
+          border: "none",
           alignItems: "center",
           width: "151px",
           transition: "transform 0.5s ease-out",

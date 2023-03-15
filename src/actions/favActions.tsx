@@ -53,7 +53,7 @@ export const addToFav =
       },
       url: trackData.url,
     };
-    console.log("b", track);
+
     dispatch({
       type: FAV_ADD_TRACK,
       payload: track,
@@ -73,8 +73,5 @@ export const removeFromFav =
       payload: trackKey,
     });
 
-    localStorage.setItem(
-      "favTrack",
-      JSON.stringify(getState().fav?.favTracks)
-    );
+    localStorage.setItem("favTrack", JSON.stringify(getState().fav?.favTracks));
   };

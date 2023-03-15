@@ -8,9 +8,14 @@ import { stateDetails } from "./Music";
 interface TrackProps {
   handleModal: stateDetails | any;
   track: MusicProps | any;
+  updated: any;
 }
 
-const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
+const TrackDetails: React.FC<TrackProps> = ({
+  handleModal,
+  track,
+  updated,
+}) => {
   const [fav, setFav] = useState(false);
   const dispatch = useDispatch();
 
@@ -41,12 +46,20 @@ const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
     const action: any = addToFav(trackData);
     dispatch(action);
     setFav(true);
+    const favTracks = localStorage.getItem("favTrack")
+      ? JSON.parse(localStorage.getItem("favTrack")!)
+      : [];
+    updated(favTracks);
   };
 
   const favRemoveHandler = () => {
     const action: any = removeFromFav(trackData.key);
     dispatch(action);
     setFav(false);
+    const favTracks = localStorage.getItem("favTrack")
+      ? JSON.parse(localStorage.getItem("favTrack")!)
+      : [];
+    updated(favTracks);
   };
 
   return (

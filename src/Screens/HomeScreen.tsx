@@ -18,8 +18,14 @@ export interface MusicProps {
   title: string;
   type: string;
   url: string;
+  updatedFav: any;
+  updated: any;
 }
 
+interface HomeProps{
+  updated:any
+  updatedFav:any
+}
 const responsive = {
   xldesktop: {
     breakpoint: { max: 1920, min: 1441 },
@@ -43,7 +49,9 @@ const responsive = {
   },
 };
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: React.FC<HomeProps> = ({updated, updatedFav}) => {
+  
+
   // const [music, setMusic] = useState<MusicTrack[]>([]);]
 
   // useEffect(() => {
@@ -68,6 +76,9 @@ const HomeScreen: React.FC = () => {
   //     .then((data) => setMusic(data.tracks))
   //     .catch((err) => console.error(err));
   // };
+
+  
+
   return (
     <div
       style={{
@@ -110,7 +121,7 @@ const HomeScreen: React.FC = () => {
             }}
             key={track.key}
           >
-            <Music track={track} />
+            <Music track={track} updated={updated} />
           </Card>
         ))}
       </Carousel>
@@ -125,7 +136,7 @@ const HomeScreen: React.FC = () => {
           }}
         ></div>
       </div>
-      <FavTracks/>
+      <FavTracks updatedFav={updatedFav} updated={updated} />
     </div>
   );
 };
