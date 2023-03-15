@@ -4,8 +4,10 @@ import Music from "../Components/Music";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
-import data from "../Assets/data";
 import FavTracks from "../Components/FavTracks";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { listTracks } from "../actions/trackListAction";
 
 export interface MusicProps {
   artists: [];
@@ -22,9 +24,9 @@ export interface MusicProps {
   updated: any;
 }
 
-interface HomeProps{
-  updated:any
-  updatedFav:any
+interface HomeProps {
+  updated: any;
+  updatedFav: any;
 }
 const responsive = {
   xldesktop: {
@@ -49,35 +51,19 @@ const responsive = {
   },
 };
 
-const HomeScreen: React.FC<HomeProps> = ({updated, updatedFav}) => {
-  
+const HomeScreen: React.FC<HomeProps> = ({ updated, updatedFav }) => {
+  const dispatch = useDispatch();
 
-  // const [music, setMusic] = useState<MusicTrack[]>([]);]
+  const tracks = useSelector((state: any) => state.trackList);
+  const { loading, error,trackList } = tracks;
 
-  // useEffect(() => {
-  //   fetchMusic();
-  // }, []);
+  console.log(trackList);
 
-  // const fetchMusic = (): void => {
-  //   fetch(
-  //     "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "X-RapidAPI-Key":
-  //           "c5f01b49b1msh260f71874aca913p150a01jsncb5ddeb5b53d",
-  //         "X-RapidAPI-Host": "shazam.p.rapidapi.com",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => setMusic(data.tracks))
-  //     .catch((err) => console.error(err));
-  // };
+  useEffect(() => {
+    const action: any = listTracks();
+    dispatch(action);
+  }, [dispatch]);
 
-  
 
   return (
     <div
@@ -113,7 +99,7 @@ const HomeScreen: React.FC<HomeProps> = ({updated, updatedFav}) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-0-px"
       >
-        {data.map((track) => (
+        {trackList.map((track:any) => (
           <Card
             style={{
               width: "152px",

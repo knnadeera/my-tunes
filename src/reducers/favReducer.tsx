@@ -1,4 +1,4 @@
-import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstant";
+import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstants";
 
 interface Action {
   type: string;

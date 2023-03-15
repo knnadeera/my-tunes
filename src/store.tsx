@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { favReducer } from "./reducers/favReducer";
+import { trackListReducer } from "./reducers/trackListReducer";
 
 const reducer = combineReducers({
   fav: favReducer,
+  trackList: trackListReducer,
 });
 
 const favTracksFromLocalStorage = localStorage.getItem("favTrack")

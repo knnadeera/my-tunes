@@ -1,7 +1,7 @@
 import axios from "axios";
 import { RootState } from "../store";
 import { Dispatch } from "redux";
-import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstant";
+import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstants";
 
 interface TrackData {
   key: string;
