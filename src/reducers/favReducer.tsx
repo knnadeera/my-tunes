@@ -1,4 +1,4 @@
-import { FAV_ADD_TRACK } from "../Constants/FavConstant";
+import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstant";
 
 interface Action {
   type: string;
@@ -9,19 +9,18 @@ interface State {
   favTracks: { key: string }[];
 }
 
-export const favReducer = (state: State = { favTracks:[]}, action: Action) => {
+export const favReducer = (
+  state: State = { favTracks: [] },
+  action: Action
+) => {
   switch (action.type) {
     case FAV_ADD_TRACK:
       const favTrack = action.payload;
-      
-      console.log('d', favTrack)
-      console.log('e', state.favTracks)
 
       if (favTrack) {
         const existFavTracks = state.favTracks.find(
           (x) => x.key === favTrack.key
         );
-        console.log('c', existFavTracks)
 
         if (existFavTracks) {
           return {
@@ -38,6 +37,12 @@ export const favReducer = (state: State = { favTracks:[]}, action: Action) => {
         }
       }
       break;
+    case FAV_REMOVE_TRACK:
+      return {
+        ...state,
+        favTracks: state.favTracks.filter((x:any) => x.key !== action.payload),
+      };
+
     default:
       return state;
   }

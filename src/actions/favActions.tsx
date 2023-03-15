@@ -1,7 +1,7 @@
 import axios from "axios";
 import { RootState } from "../store";
 import { Dispatch } from "redux";
-import { FAV_ADD_TRACK } from "../Constants/FavConstant";
+import { FAV_ADD_TRACK, FAV_REMOVE_TRACK } from "../Constants/FavConstant";
 
 interface TrackData {
   key: string;
@@ -19,9 +19,18 @@ interface TrackData {
   };
 }
 
+interface TrackKey {
+  key: String;
+}
+
 export interface AddToFavAction {
   type: typeof FAV_ADD_TRACK;
   payload: TrackData;
+}
+
+export interface RemoveFromFavAction {
+  type: typeof FAV_REMOVE_TRACK;
+  payload: TrackKey;
 }
 
 export const addToFav =
@@ -30,7 +39,6 @@ export const addToFav =
     dispatch: Dispatch<AddToFavAction>,
     getState: () => RootState
   ): Promise<void> => {
-
     const { coverart } = trackData.images;
     const { subject } = trackData.share;
 
@@ -45,11 +53,28 @@ export const addToFav =
       },
       url: trackData.url,
     };
-console.log('b',track)
+    console.log("b", track);
     dispatch({
       type: FAV_ADD_TRACK,
       payload: track,
     });
 
     localStorage.setItem("favTrack", JSON.stringify(getState().fav?.favTracks));
+  };
+
+export const removeFromFav =
+  (trackKey: TrackKey) =>
+  async (
+    dispatch: Dispatch<RemoveFromFavAction>,
+    getState: () => RootState
+  ): Promise<void> => {
+    dispatch({
+      type: FAV_REMOVE_TRACK,
+      payload: trackKey,
+    });
+
+    localStorage.setItem(
+      "favTrack",
+      JSON.stringify(getState().fav?.favTracks)
+    );
   };

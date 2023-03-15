@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Music from "../Components/Music";
 import Carousel from "react-multi-carousel";
@@ -42,9 +42,14 @@ const responsive = {
 };
 
 const FavTracks = () => {
-  const favTracks = localStorage.getItem("favTrack")
-    ? JSON.parse(localStorage.getItem("favTrack")!)
-    : [];
+  const [isFavTracks, setIsFavTracks] = useState([]);
+
+  useEffect(() => {
+    const favTracks = localStorage.getItem("favTrack")
+      ? JSON.parse(localStorage.getItem("favTrack")!)
+      : [];
+    setIsFavTracks(favTracks);
+  }, []);
 
   return (
     <div>
@@ -64,7 +69,7 @@ const FavTracks = () => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-0-px"
       >
-        {favTracks.map((track:any) => (
+        {isFavTracks.map((track: any) => (
           <Card
             style={{
               width: "152px",

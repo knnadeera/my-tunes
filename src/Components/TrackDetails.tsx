@@ -1,8 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { addToFav } from "../actions/favActions";
+import { addToFav, removeFromFav } from "../actions/favActions";
 import { MusicProps } from "../Screens/HomeScreen";
 import { stateDetails } from "./Music";
 
@@ -14,6 +13,21 @@ interface TrackProps {
 const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
   const [fav, setFav] = useState(false);
   const dispatch = useDispatch();
+
+  const favTracks = localStorage.getItem("favTrack")
+    ? JSON.parse(localStorage.getItem("favTrack")!)
+    : [];
+
+  useEffect(() => {
+    if (favTracks) {
+      const existFavTracks = favTracks.find((x: any) => x.key === track.key);
+      if (existFavTracks) {
+        setFav(true);
+      } else {
+        setFav(false);
+      }
+    }
+  }, [favTracks]);
 
   const trackData = {
     key: track.key,
@@ -30,7 +44,8 @@ const TrackDetails: React.FC<TrackProps> = ({ handleModal, track }) => {
   };
 
   const favRemoveHandler = () => {
-    console.log(track.key);
+    const action: any = removeFromFav(trackData.key);
+    dispatch(action);
     setFav(false);
   };
 
