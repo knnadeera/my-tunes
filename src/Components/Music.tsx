@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import { MusicProps } from "../Screens/HomeScreen";
 import TrackDetails from "./TrackDetails";
 
@@ -32,10 +32,9 @@ const Music: React.FC<PropsFromHome> = ({ track }) => {
       <Modal show={showModal} onHide={handleModal}>
         <TrackDetails handleModal={handleModal} track={track} />
       </Modal>
-      <div
+      <Card
         style={{
-          display: "flex",
-          flexDirection: "column",
+          border:'none',
           alignItems: "center",
           width: "151px",
           transition: "transform 0.5s ease-out",
@@ -46,14 +45,14 @@ const Music: React.FC<PropsFromHome> = ({ track }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <img
+        <Card.Img
           alt={track.title}
           src={track.images.coverart}
           width="150px"
           style={{ borderRadius: "5px" }}
         />
-        <p>{track.title}</p>
-      </div>
+        <Card.Title>{track.title}</Card.Title>
+      </Card>
     </>
   );
 };

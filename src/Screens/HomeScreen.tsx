@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";
 import data from "../Assets/data";
+import FavTracks from "../Components/FavTracks";
 
 export interface MusicProps {
   artists: [];
@@ -68,10 +69,12 @@ const HomeScreen: React.FC = () => {
   //     .catch((err) => console.error(err));
   // };
   return (
-    <div style={{
-      marginTop: "1rem",
-      maxWidth: "100%"
-    }}>
+    <div
+      style={{
+        marginTop: "1rem",
+        maxWidth: "100%",
+      }}
+    >
       <div style={{ display: "flex", alignItems: "center" }}>
         <h6 style={{ width: "20%", color: "gray" }}>Released this week</h6>
         <div
@@ -122,34 +125,7 @@ const HomeScreen: React.FC = () => {
           }}
         ></div>
       </div>
-      <Carousel
-        swipeable={true}
-        draggable={true}
-        showDots={false}
-        responsive={responsive}
-        ssr={true} // server-side rendering fallback
-        infinite={true}
-        autoPlay={false}
-        keyBoardControl={true}
-        customTransition="all .5s"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-0-px"
-      >
-        {data.map((track) => (
-          <Card
-            style={{
-              width: "152px",
-              border: "none",
-            }}
-            key={track.key}
-          >
-            <Music track={track} />
-          </Card>
-        ))}
-      </Carousel>
+      <FavTracks/>
     </div>
   );
 };
