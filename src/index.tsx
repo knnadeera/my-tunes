@@ -7,21 +7,62 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import Keycloak, { KeycloakInstance } from "keycloak-js";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
-);
+let keycloak: KeycloakInstance = Keycloak("./resources/KeycloakAuth.json");
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+keycloak
+  .init({ onLoad: "login-required" })
+  .success((authenticated) => {
+    console.log(keycloak);
+    console.log(authenticated);
+    if (!authenticated) {
+      window.location.reload();
+    } else {
+      console.info("Authenticated");
+    }
+
+    const root = ReactDOM.createRoot(
+      document.getElementById("root") as HTMLElement
+    );
+    root.render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </React.StrictMode>
+    );
+
+    sessionStorage.setItem("authentication", keycloak.token!);
+    sessionStorage.setItem("refreshToken", keycloak.refreshToken!);
+
+    setTimeout(() => {
+      keycloak
+        .updateToken(70)
+        .success((refreshed) => {
+          if (refreshed) {
+            console.debug("Token refreshed" + refreshed);
+          } else {
+            console.warn(
+              "Token not refreshed, valid for " +
+                Math.round(
+                  (keycloak.tokenParsed?.exp ?? 0) +
+                    (keycloak.timeSkew ??0) -
+                    new Date().getTime() / 1000
+                ) +
+                " seconds"
+            );
+          }
+        })
+        .error(() => {
+          console.error("Failed to refresh token");
+        });
+    }, 60000);
+  })
+  .error(() => {
+    console.error("Authenticated Failed");
+  });
+
 reportWebVitals();
