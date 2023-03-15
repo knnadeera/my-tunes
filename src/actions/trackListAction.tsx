@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import data from "../Assets/data";
 import {
   TRACK_LIST_FAIL,
   TRACK_LIST_REQUEST,
@@ -21,22 +20,22 @@ export const listTracks =
     try {
       dispatch({ type: TRACK_LIST_REQUEST });
 
-      //   const response = await fetch(
-      //     "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
-      //     {
-      //       method: "GET",
-      //       headers: {
-      //         "X-RapidAPI-Key":
-      //           "c5f01b49b1msh260f71874aca913p150a01jsncb5ddeb5b53d",
-      //         "X-RapidAPI-Host": "shazam.p.rapidapi.com",
-      //       },
-      //     }
-      //   );
-      //   if (!response.ok) {
-      //     throw new Error("Failed to fetch products");
-      //   }
+        const response = await fetch(
+          "https://shazam.p.rapidapi.com/songs/list-recommendations?key=484129036&locale=en-US",
+          {
+            method: "GET",
+            headers: {
+              "X-RapidAPI-Key":
+                "c5f01b49b1msh260f71874aca913p150a01jsncb5ddeb5b53d",
+              "X-RapidAPI-Host": "shazam.p.rapidapi.com",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
 
-      //   const data = await response.json();
+        const data = await response.json();
 
       dispatch({ type: TRACK_LIST_SUCCESS, payload: data });
     } catch (error: unknown) {

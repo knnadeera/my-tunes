@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Music from "../Components/Music";
 import Carousel from "react-multi-carousel";
@@ -55,15 +55,12 @@ const HomeScreen: React.FC<HomeProps> = ({ updated, updatedFav }) => {
   const dispatch = useDispatch();
 
   const tracks = useSelector((state: any) => state.trackList);
-  const { loading, error,trackList } = tracks;
-
-  console.log(trackList);
+  const { loading, error, trackList } = tracks;
 
   useEffect(() => {
     const action: any = listTracks();
     dispatch(action);
   }, [dispatch]);
-
 
   return (
     <div
@@ -99,7 +96,7 @@ const HomeScreen: React.FC<HomeProps> = ({ updated, updatedFav }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-0-px"
       >
-        {trackList.map((track:any) => (
+        {trackList.map((track: any) => (
           <Card
             style={{
               width: "152px",
