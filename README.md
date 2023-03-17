@@ -1,5 +1,7 @@
 this was built with react-typescript
 
+![Home](https://user-images.githubusercontent.com/53006492/225973728-3aa6bd00-dac3-4f24-9ff2-e8db22bec66b.JPG)
+
 you have to install these packages
 
 react
