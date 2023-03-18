@@ -1,5 +1,7 @@
 this was built with react-typescript
 
+live prev: https://knnadeera.github.io/my-tunes/
+
 ![Home](https://user-images.githubusercontent.com/53006492/225973728-3aa6bd00-dac3-4f24-9ff2-e8db22bec66b.JPG)
 
 ![Track details](https://user-images.githubusercontent.com/53006492/225974287-61b3a074-fa8b-4293-88cc-444c01e4758e.JPG)
